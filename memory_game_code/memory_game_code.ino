@@ -1,4 +1,6 @@
-#define PLAYER_WAIT_TIME 2000 // The time allowed between button presses - 2s 
+#include <LiquidCrystal_I2C.h>
+
+#define PLAYER_WAIT_TIME 2500 // The time allowed between button presses - 2s 
 
 byte sequence[100];           // Storage for the light sequence
 byte curLen = 0;              // Current length of the sequence
@@ -8,6 +10,8 @@ byte expRd = 0;               // The LED that's suppose to be lit by the player
 bool btnDwn = false;          // Used to check if a button is pressed
 bool wait = false;            // Is the program waiting for the user to press a button
 bool resetFlag = false;       // Used to indicate to the program that once the player lost
+
+LiquidCrystal_I2C lcd(0x27, 16, 2); //init LCD
 
 byte soundPin = 5;            // Speaker output
 
@@ -19,6 +23,9 @@ byte pins[] = {2, 3, 4, 5}; // Button input pins and LED ouput pins - change the
 long inputTime = 0;           // Timer variable for the delay between user inputs
 
 void setup() {
+  lcd.init();
+  lcd.backlight();
+  lcd.print("Memory Game!");
   delay(3000);                // This is to give me time to breathe after connection the arduino - can be removed if you want
   Serial.begin(9600);         // Start Serial monitor. This can be removed too as long as you remove all references to Serial below
   Reset();
@@ -116,7 +123,8 @@ void DoLoseProcess(){
 ///
 /// Where the magic happens
 ///
-void loop() {  
+void loop() {
+  lcd.scrollDisplayLeft();
   if(!wait){      
                             //****************//
                             // Arduino's turn //
