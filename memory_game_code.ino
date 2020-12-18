@@ -13,7 +13,7 @@ byte soundPin = 5;            // Speaker output
 
 byte noPins = 4;              // Number of buttons/LEDs (While working on this, I was using only 2 LEDs)
                               // You could make the game harder by adding an additional LED/button/resistors combination.
-byte pins[] = {2, 13, 10, 8}; // Button input pins and LED ouput pins - change these vaules if you wwant to connect yourbuttons to other pins
+byte pins[] = {2, 3, 4, 5}; // Button input pins and LED ouput pins - change these vaules if you wwant to connect yourbuttons to other pins
                               // The number of elements must match noPins below
                               
 long inputTime = 0;           // Timer variable for the delay between user inputs
