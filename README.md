@@ -14,15 +14,19 @@ A Simon-like memory game made usng the Arduino.
 
 ## Schematic
 
-![design image](https://github.com/angelina-tsuboi/Arduino_Processing_Communication/blob/master/images/design.png)
+![design image](https://github.com/angelina-tsuboi/Arduino_Memory_Game/blob/main/images/schematic.png)
 
 ## How It Works
 
-The circuit for this project is straightforward.  
+The circuit for this project is straightforward. 
+
+## Prototype
+
+![prototype photo](https://github.com/angelina-tsuboi/Arduino_Memory_Game/blob/main/images/stage1_image.JPG)
 
 ## Completed Project
 
-![project photo](https://github.com/angelina-tsuboi/Arduino_Processing_Communication/blob/master/images/final.jpg)
+![project photo](https://github.com/angelina-tsuboi/Arduino_Memory_Game/blob/main/images/final.JPG)
 
 ## Sources
 
