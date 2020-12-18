@@ -25,7 +25,7 @@ long inputTime = 0;           // Timer variable for the delay between user input
 void setup() {
   lcd.init();
   lcd.backlight();
-  lcd.print("Memory Game!");
+  lcdPrint("Memory Game!");
   delay(3000);                // This is to give me time to breathe after connection the arduino - can be removed if you want
   Serial.begin(9600);         // Start Serial monitor. This can be removed too as long as you remove all references to Serial below
   Reset();
@@ -74,6 +74,7 @@ void flash(short freq){
 ///This function resets all the game variables to their default values
 ///
 void Reset(){
+  lcdPrint("Memory Game!");
   flash(500);
   curLen = 0;
   inputCount = 0;
@@ -96,6 +97,7 @@ void Lose(){
 /// Also called after losing to show you what you last sequence was
 ///
 void playSequence(){
+  lcdPrint("Playing Sequence");
   //Loop through the stored sequence and light the appropriate LEDs in turn
   for(int i = 0; i < curLen; i++){
       Serial.print("Seq: ");
@@ -113,6 +115,7 @@ void playSequence(){
 /// The events that occur upon a loss
 ///
 void DoLoseProcess(){
+  lcdPrint("Game Over!");
   Lose();             // Flash all the LEDS quickly (see Lose function)
   delay(1000);
   playSequence();     // Shows the user the last sequence - So you can count remember your best score - Mine's 22 by the way :)
@@ -120,11 +123,15 @@ void DoLoseProcess(){
   Reset();            // Reset everything for a new game
 }
 
+void lcdPrint(String message){
+  lcd.clear();
+  lcd.print(message);
+}
+
 ///
 /// Where the magic happens
 ///
 void loop() {
-  lcd.scrollDisplayLeft();
   if(!wait){      
                             //****************//
                             // Arduino's turn //
@@ -153,7 +160,7 @@ void loop() {
         
     if(!btnDwn){                                  // 
       expRd = sequence[inputCount];               // Find the value we expect from the player
-      Serial.print("Expected: ");                 // Serial Monitor Output - Should be removed if you removed the Serial.begin above
+      Serial.println("Expected: ");                 // Serial Monitor Output - Should be removed if you removed the Serial.begin above
       Serial.println(expRd);                      // Serial Monitor Output - Should be removed if you removed the Serial.begin above
       
       for(int i = 0; i < noPins; i++){           // Loop through the all the pins
